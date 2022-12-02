@@ -30,9 +30,9 @@ pub fn day1() {
 	elves_calories.sort();
 	elves_calories.reverse();
 
-	let tree_max_calories = elves_calories[..3]
+	let three_max_calories = elves_calories[..3]
 		.iter()
 		.sum::<u32>();
 
-	println!("{:?}", tree_max_calories);
+	println!("{:?}", three_max_calories);
 }
