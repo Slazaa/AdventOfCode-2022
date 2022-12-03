@@ -2,6 +2,7 @@ use std::env;
 
 mod day1;
 mod day2;
+mod day3;
 
 fn main() {
 	let args = env::args()
@@ -11,6 +12,7 @@ fn main() {
 	match args[0].as_str() {
 		"day1" => day1::day1(),
 		"day2" => day2::day2(),
+		"day3" => day3::day3(),
 		_ => println!("Invalid name: '{}'", args[0])
 	}
 }
