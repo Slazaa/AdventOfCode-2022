@@ -14,26 +14,28 @@ pub fn day3() {
 	let sum = input
 		.split("\n")
 		.collect::<Vec<&str>>()
+		.chunks(3)
+		.collect::<Vec<&[&str]>>()
 		.iter()
-		.map(|rucksack| {
-			let (fst_comp, snd_comp) = rucksack
-				.split_at(rucksack.len() / 2);
+		.map(|group| {
+			let mut badge = ' ';
 
-			println!("{} - {}", fst_comp, snd_comp);
-
-			for i in fst_comp.chars() {
-				for j in snd_comp.chars() {
-					if i == j {
-						if i.is_lowercase() {
-							return (i as u8 - 'a' as u8 + 1) as u32;
-						} else {
-							return (i as u8 - 'A' as u8 + 27)  as u32;
-						}
-					}
+			for i in group[0].chars() {
+				if group[1].contains(i) && group[2].contains(i) {
+					badge = i;
+					break;
 				}
 			}
 
-			0
+			if badge == ' ' {
+				panic!("One group has no badge :(");
+			}
+
+			if badge.is_lowercase() {
+				(badge as u8 - 'a' as u8 + 1) as u32
+			} else {
+				(badge as u8 - 'A' as u8 + 27)  as u32
+			}
 		})
 		.collect::<Vec<u32>>()
 		.iter()
